@@ -118,5 +118,9 @@
     "start": "node ./dist/bin/start.js",
     "test": "mocha"
   },
-  "version": "v2.0.0-develop"
+  "version": "v2.0.0-develop",
+  "volta": {
+    "node": "14.18.3",
+    "npm": "8.4.0"
+  }
 }
