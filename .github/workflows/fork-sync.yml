@@ -1,0 +1,27 @@
+name: "Fork Sync"
+on:
+  schedule:
+    - cron:  '0 */2 * * *'
+  workflow_dispatch:
+jobs:
+  sync-develop:
+    runs-on: ubuntu-latest
+    name: "Sync from sebbo2002/ical-generator@develop"
+    steps:
+    - name: "Checkout: develop"
+      uses: actions/checkout@v2
+      with:
+        ref: develop
+        token: ${{ github.token }}
+    - name: "Update: develop"
+      id: sync-develop
+      uses: mathieucarbou/Fork-Sync-With-Upstream-action@fork-sync
+      with:
+        domain: 'github.com'
+        upstream_repository: sebbo2002/ical-generator
+        upstream_branch: develop
+        target_branch: develop
+        git_pull_args: --ff-only
+        # git_push_args: --force
+    - name: Timestamp
+      run: date
